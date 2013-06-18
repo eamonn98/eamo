@@ -1,6 +1,6 @@
-package com.eamo.entity.behaviour;
+package entity.behaviour;
 
-import com.eamo.entity.Entity;
+import eamo.engine.entity.Entity;
 
 /**
  * Abstract base class for behaviours.

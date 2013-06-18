@@ -1,13 +1,13 @@
-package com.eamo.entity;
-
-import com.eamo.entity.Message.Message;
-import com.eamo.entity.attribute.Attribute;
-import com.eamo.entity.behaviour.Behaviour;
-import com.eamo.entity.behaviour.Updatable;
+package eamo.engine.entity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import entity.attribute.Attribute;
+import entity.behaviour.Behaviour;
+import entity.behaviour.Updatable;
+import entity.message.Message;
 
 /**
  * Game entity class. Instantiate using an EntityFactory.

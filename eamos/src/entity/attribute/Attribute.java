@@ -1,4 +1,4 @@
-package com.eamo.entity.attribute;
+package entity.attribute;
 
 /**
  * Attribute associated with a game entity

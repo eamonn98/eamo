@@ -1,10 +1,11 @@
-package com.eamo.entity;
+package eamo.engine.entity;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
-import com.eamo.entity.attribute.Attribute;
-import com.eamo.entity.attribute.AttributeConstants;
-import com.eamo.entity.behaviour.RenderRectangle;
+
+import entity.attribute.Attribute;
+import entity.attribute.AttributeConstants;
+import entity.behaviour.RenderRectangle;
 
 /**
  * Created with IntelliJ IDEA.

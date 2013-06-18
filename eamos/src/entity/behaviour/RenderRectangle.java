@@ -1,10 +1,11 @@
-package com.eamo.entity.behaviour;
+package entity.behaviour;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
-import com.eamo.entity.attribute.Attribute;
-import com.eamo.entity.attribute.AttributeConstants;
+
+import entity.attribute.Attribute;
+import entity.attribute.AttributeConstants;
 
 /**
  * Created with IntelliJ IDEA.

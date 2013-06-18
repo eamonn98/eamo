@@ -1,4 +1,4 @@
-package com.eamo.entity.behaviour;
+package entity.behaviour;
 
 /**
  * Created with IntelliJ IDEA.

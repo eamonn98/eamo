@@ -1,4 +1,4 @@
-package com.eamo.entity.attribute;
+package entity.attribute;
 
 /**
  * Created with IntelliJ IDEA.
