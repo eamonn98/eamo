@@ -1,4 +1,4 @@
-package eamo.engine.entity;
+package eamo.engine;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,12 +17,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
+import eamo.engine.component.Component;
+import eamo.engine.component.ComponentFactory;
+
 /**
- * Created with IntelliJ IDEA.
- * User: eamonn98
- * Date: 22/04/2013
- * Time: 18:04
- * To change this template use File | Settings | File Templates.
+ *  TODO javadoc
  */
 public class Splash implements Screen
 {
@@ -31,7 +30,7 @@ public class Splash implements Screen
     private static final int HEIGHT = 20;
 
     private Texture splashTex;
-    private ArrayList<Sprite> splashSprites;
+    private ArrayList< Sprite > splashSprites;
     private SpriteBatch sprBatch;
     private Game parent;
     private BitmapFont font;
@@ -40,7 +39,7 @@ public class Splash implements Screen
 
     Rectangle clicked;
 
-    private List<Entity> entities;
+    private List< Component > entities;
 
     private class InputListener implements InputProcessor
     {
@@ -48,19 +47,22 @@ public class Splash implements Screen
         @Override
         public boolean keyDown( int keycode )
         {
-            return false;  //To change body of implemented methods use File | Settings | File Templates.
+            return false; // To change body of implemented methods use File |
+                          // Settings | File Templates.
         }
 
         @Override
         public boolean keyUp( int keycode )
         {
-            return false;  //To change body of implemented methods use File | Settings | File Templates.
+            return false; // To change body of implemented methods use File |
+                          // Settings | File Templates.
         }
 
         @Override
         public boolean keyTyped( char character )
         {
-            return false;  //To change body of implemented methods use File | Settings | File Templates.
+            return false; // To change body of implemented methods use File |
+                          // Settings | File Templates.
         }
 
         @Override
@@ -72,23 +74,25 @@ public class Splash implements Screen
         @Override
         public boolean touchUp( int screenX, int screenY, int pointer, int button )
         {
-//            int actY = Gdx.graphics.getHeight() - screenY;
-//            clicked = new Rectangle( screenX-5, actY-5, 10, 10 );
-//
-//            for ( int i = 0; i < rectangles.size(); i++ )
-//            {
-//                Rectangle rect = rectangles.get( i );
-//                rectColors.get( i ).set( 0.0f, 0, 0, 1.0f );
-//
-//                boolean inWidth = rect.x < screenX && ( rect.x + rect.width ) > screenX;
-//                boolean inHeight = rect.y < actY && ( rect.y + rect.height ) > actY;
-//                if ( inWidth && inHeight )
-//                {
-//                    rectColors.get( i ).set( 1.0f, 0, 0, 1.0f );
-//                }
-//            }
-//
-//            clickSound.play();
+            // int actY = Gdx.graphics.getHeight() - screenY;
+            // clicked = new Rectangle( screenX-5, actY-5, 10, 10 );
+            //
+            // for ( int i = 0; i < rectangles.size(); i++ )
+            // {
+            // Rectangle rect = rectangles.get( i );
+            // rectColors.get( i ).set( 0.0f, 0, 0, 1.0f );
+            //
+            // boolean inWidth = rect.x < screenX && ( rect.x + rect.width ) >
+            // screenX;
+            // boolean inHeight = rect.y < actY && ( rect.y + rect.height ) >
+            // actY;
+            // if ( inWidth && inHeight )
+            // {
+            // rectColors.get( i ).set( 1.0f, 0, 0, 1.0f );
+            // }
+            // }
+            //
+            // clickSound.play();
             return true;
         }
 
@@ -101,20 +105,22 @@ public class Splash implements Screen
         @Override
         public boolean mouseMoved( int screenX, int screenY )
         {
-            return false;  //To change body of implemented methods use File | Settings | File Templates.
+            return false; // To change body of implemented methods use File |
+                          // Settings | File Templates.
         }
 
         @Override
         public boolean scrolled( int amount )
         {
-            return false;  //To change body of implemented methods use File | Settings | File Templates.
+            return false; // To change body of implemented methods use File |
+                          // Settings | File Templates.
         }
     }
 
     public Splash( Game parent )
     {
         this.parent = parent;
-        entities = new ArrayList<Entity>();
+        entities = new ArrayList< Component >();
     }
 
     @Override
@@ -123,7 +129,7 @@ public class Splash implements Screen
         Gdx.gl.glClearColor( 0, 0, 0, 1.0f );
         Gdx.gl.glClear( GL10.GL_COLOR_BUFFER_BIT );
 
-        for ( Entity entity : entities )
+        for ( Component entity : entities )
         {
             entity.update( delta );
         }
@@ -137,7 +143,7 @@ public class Splash implements Screen
     public void resize( int width, int height )
     {
         Gdx.input.setInputProcessor( new InputListener() );
-//        TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
+        // TextButton.TextButtonStyle style = new TextButton.TextButtonStyle();
     }
 
     @Override
@@ -152,25 +158,28 @@ public class Splash implements Screen
         float posX = Gdx.graphics.getWidth() / 2f;
         float posY = Gdx.graphics.getHeight() / 2f;
 
-        entities.add( EntityFactory.createRectangleEntity( posX, posY, 40f, 40f, Color.CYAN ) );
+        entities.add( ComponentFactory.createRectangleEntity( posX, posY, 40f, 40f, Color.CYAN ) );
     }
 
     @Override
     public void hide()
     {
-        //To change body of implemented methods use File | Settings | File Templates.
+        // To change body of implemented methods use File | Settings | File
+        // Templates.
     }
 
     @Override
     public void pause()
     {
-        //To change body of implemented methods use File | Settings | File Templates.
+        // To change body of implemented methods use File | Settings | File
+        // Templates.
     }
 
     @Override
     public void resume()
     {
-        //To change body of implemented methods use File | Settings | File Templates.
+        // To change body of implemented methods use File | Settings | File
+        // Templates.
     }
 
     @Override

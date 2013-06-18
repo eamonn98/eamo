@@ -1,11 +1,7 @@
-package entity.attribute;
+package eamo.engine.component.attribute;
 
 /**
- * Created with IntelliJ IDEA.
- * User: eamonn98
- * Date: 18/05/2013
- * Time: 18:23
- * To change this template use File | Settings | File Templates.
+ * TODO javadoc
  */
 public class AttributeConstants
 {

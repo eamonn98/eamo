@@ -1,4 +1,4 @@
-package entity.message;
+package eamo.engine.component.message;
 
 /**
  * Created with IntelliJ IDEA.

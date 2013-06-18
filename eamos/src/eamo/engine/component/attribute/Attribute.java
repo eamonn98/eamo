@@ -1,13 +1,9 @@
-package entity.attribute;
+package eamo.engine.component.attribute;
 
 /**
  * Attribute associated with a game entity
- * User: eamonn98
- * Date: 12/05/2013
- * Time: 16:13
- * To change this template use File | Settings | File Templates.
  */
-public class Attribute<T>
+public class Attribute< T >
 {
     public String attributeID;
     private T attribute;

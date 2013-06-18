@@ -2,7 +2,6 @@ package eamo.engine;
 
 import com.badlogic.gdx.Game;
 
-import eamo.engine.entity.Splash;
 
 /**
  * Ex

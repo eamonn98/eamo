@@ -1,18 +1,14 @@
-package entity.behaviour;
+package eamo.engine.component.behaviour;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
 
-import entity.attribute.Attribute;
-import entity.attribute.AttributeConstants;
+import eamo.engine.component.attribute.Attribute;
+import eamo.engine.component.attribute.AttributeConstants;
 
 /**
- * Created with IntelliJ IDEA.
- * User: eamonn98
- * Date: 12/05/2013
- * Time: 16:34
- * To change this template use File | Settings | File Templates.
+ * TODO javadoc
  */
 public class RenderRectangle extends Behaviour implements Updatable
 {
@@ -26,9 +22,9 @@ public class RenderRectangle extends Behaviour implements Updatable
     @Override
     public void update( float delta )
     {
-        Attribute<Vector2> pos = getParent().getAttribute( AttributeConstants.POSITION_ATTRIBITE_ID );
-        Attribute<Vector2> size = getParent().getAttribute( AttributeConstants.SIZE_ATTRIBITE_ID );
-        Attribute<Color> col = getParent().getAttribute( AttributeConstants.COLOR_ATTRIBITE_ID );
+        Attribute< Vector2 > pos = (Attribute< Vector2 >) getParent().getAttribute( AttributeConstants.POSITION_ATTRIBITE_ID );
+        Attribute< Vector2 > size = (Attribute< Vector2 >) getParent().getAttribute( AttributeConstants.SIZE_ATTRIBITE_ID );
+        Attribute< Color > col = (Attribute< Color >) getParent().getAttribute( AttributeConstants.COLOR_ATTRIBITE_ID );
 
         shapeRenderer.begin( ShapeRenderer.ShapeType.FilledRectangle );
         shapeRenderer.setColor( col.getAttribute() );
