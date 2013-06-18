@@ -10,6 +10,10 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
+/**
+ * Ex
+ *
+ */
 public class Examples implements ApplicationListener {
 	private OrthographicCamera camera;
 	private SpriteBatch batch;
