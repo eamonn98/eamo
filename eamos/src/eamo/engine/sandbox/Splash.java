@@ -1,4 +1,4 @@
-package eamo.engine;
+package eamo.engine.sandbox;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,7 +8,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -18,10 +17,11 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 import eamo.engine.component.Component;
-import eamo.engine.component.ComponentFactory;
+import eamo.engine.managers.ComponentManager;
 
 /**
- *  TODO javadoc
+ * TODO javadoc
+ * @deprecated
  */
 public class Splash implements Screen
 {
@@ -39,7 +39,10 @@ public class Splash implements Screen
 
     Rectangle clicked;
 
+    // TODO refactor to some form of root component management system that
+    // utilises cross-component messaging features.
     private List< Component > entities;
+    private ComponentManager manager;
 
     private class InputListener implements InputProcessor
     {
@@ -120,22 +123,17 @@ public class Splash implements Screen
     public Splash( Game parent )
     {
         this.parent = parent;
-        entities = new ArrayList< Component >();
+        manager = new ComponentManager( null );
     }
 
     @Override
     public void render( float delta )
     {
-        Gdx.gl.glClearColor( 0, 0, 0, 1.0f );
+        Gdx.gl.glClearColor( 0.4f, 0.6f, 1.0f, 1.0f );
         Gdx.gl.glClear( GL10.GL_COLOR_BUFFER_BIT );
 
-        for ( Component entity : entities )
-        {
-            entity.update( delta );
-        }
-
         sprBatch.begin();
-
+        manager.dispatchMessage( new GameCharacter.RenderMessage( sprBatch, delta ) );
         sprBatch.end();
     }
 
@@ -158,7 +156,7 @@ public class Splash implements Screen
         float posX = Gdx.graphics.getWidth() / 2f;
         float posY = Gdx.graphics.getHeight() / 2f;
 
-        entities.add( ComponentFactory.createRectangleEntity( posX, posY, 40f, 40f, Color.CYAN ) );
+        manager.addComponent( GameCharacter.createInstance() );
     }
 
     @Override
