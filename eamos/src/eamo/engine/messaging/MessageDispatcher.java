@@ -1,4 +1,4 @@
-package eamo.engine.component.message;
+package eamo.engine.messaging;
 
 import java.util.HashMap;
 import java.util.HashSet;

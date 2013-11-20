@@ -3,7 +3,7 @@ package eamo.engine.transform;
 import com.badlogic.gdx.math.Vector2;
 
 import eamo.engine.component.Component;
-import eamo.engine.component.attribute.Attribute;
+import eamo.engine.component.GameEntity;
 
 /**
  * Transform component representing a position, rotation and scale of an entity.
@@ -12,16 +12,16 @@ import eamo.engine.component.attribute.Attribute;
  */
 public class Transform extends Component
 {
-    public static final String POSITION_ATTRIBUTE_ID = "Position_Attribute";
-    public static final String ROTATION_ATTRIBUTE_ID = "Rotation_Attribute";
-    public static final String SCALE_ATTRIBUTE_ID = "Scale_Attribute";
+    private Vector2 position;
+    private Float rotation;
+    private Float scale;
 
     /**
      * Create a transform component with all attributes initialised to defaults.
      * 
      * @param id
      */
-    public Transform( long id, Component parent )
+    public Transform( String id, GameEntity parent )
     {
         this( id, parent, new Vector2( 0.0f, 0.0f ), 0.0f, 1.0f );
     }
@@ -35,7 +35,7 @@ public class Transform extends Component
      * @param rotation this transform's rotation attribute.
      * @param scale this transform's scale attribute.
      */
-    public Transform( long id, Component parent, Vector2 position, float rotation, float scale )
+    public Transform( String id, GameEntity parent, Vector2 position, float rotation, float scale )
     {
         super( id, parent );
 
@@ -52,7 +52,7 @@ public class Transform extends Component
      */
     public Vector2 getPosition()
     {
-        return (Vector2) getAttribute( POSITION_ATTRIBUTE_ID ).getAttribute();
+        return position;
     }
 
     /**
@@ -63,7 +63,7 @@ public class Transform extends Component
      */
     public float getRotation()
     {
-        return (Float) getAttribute( ROTATION_ATTRIBUTE_ID ).getAttribute();
+        return rotation;
     }
 
     /**
@@ -74,7 +74,7 @@ public class Transform extends Component
      */
     public float getScale()
     {
-        return (Float) getAttribute( SCALE_ATTRIBUTE_ID ).getAttribute();
+        return scale;
     }
 
     /**
@@ -84,7 +84,7 @@ public class Transform extends Component
      */
     public void setPosition( Vector2 position )
     {
-        addAttribute( new Attribute< Vector2 >( POSITION_ATTRIBUTE_ID, position ) );
+       this.position = position;
     }
 
     /**
@@ -94,7 +94,7 @@ public class Transform extends Component
      */
     public void setRotation( float rotation )
     {
-        addAttribute( new Attribute< Float >( ROTATION_ATTRIBUTE_ID, rotation ) );
+        this.rotation = rotation;
     }
 
     /**
@@ -104,7 +104,7 @@ public class Transform extends Component
      */
     public void setScale( float scale )
     {
-        addAttribute( new Attribute< Float >( SCALE_ATTRIBUTE_ID, scale ) );
+        this.scale = scale;
     }
 
     /**
@@ -122,7 +122,7 @@ public class Transform extends Component
 
     /**
      * Subtract the supplied transform's attribute values from this transform's
-     * attributes.
+     * attributes. TODO is this required?
      * 
      * @param other the other transform to subtract.
      */

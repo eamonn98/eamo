@@ -17,7 +17,8 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 
 import eamo.engine.component.Component;
-import eamo.engine.managers.ComponentManager;
+import eamo.engine.managers.EntityManager;
+import eamo.engine.rendering.messages.RenderMessage;
 
 /**
  * TODO javadoc
@@ -42,7 +43,7 @@ public class Splash implements Screen
     // TODO refactor to some form of root component management system that
     // utilises cross-component messaging features.
     private List< Component > entities;
-    private ComponentManager manager;
+    private EntityManager manager;
 
     private class InputListener implements InputProcessor
     {
@@ -123,7 +124,7 @@ public class Splash implements Screen
     public Splash( Game parent )
     {
         this.parent = parent;
-        manager = new ComponentManager( null );
+        manager = new EntityManager( null );
     }
 
     @Override
@@ -133,7 +134,7 @@ public class Splash implements Screen
         Gdx.gl.glClear( GL10.GL_COLOR_BUFFER_BIT );
 
         sprBatch.begin();
-        manager.dispatchMessage( new GameCharacter.RenderMessage( sprBatch, delta ) );
+        manager.dispatchMessage( new RenderMessage( sprBatch, delta ) );
         sprBatch.end();
     }
 
@@ -156,7 +157,7 @@ public class Splash implements Screen
         float posX = Gdx.graphics.getWidth() / 2f;
         float posY = Gdx.graphics.getHeight() / 2f;
 
-        manager.addComponent( GameCharacter.createInstance() );
+        manager.addEntity( GameCharacter.createInstance() );
     }
 
     @Override

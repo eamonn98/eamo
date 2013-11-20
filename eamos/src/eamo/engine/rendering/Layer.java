@@ -1,20 +1,32 @@
 package eamo.engine.rendering;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
-import eamo.engine.component.Component;
+import eamo.engine.component.GameEntity;
 
 public class Layer implements Comparable< Layer >
 {
     private String layerID;
     private int zIndex;
-    private List< Component > components;
+    private List< GameEntity > components;
+    private final ZindexComparator zIndexComparator = new ZindexComparator();
+
+    private class ZindexComparator implements Comparator< GameEntity >
+    {
+        @Override
+        public int compare( GameEntity a, GameEntity b )
+        {
+            return ( (Float) a.calculateZIndex() ).compareTo( b.calculateZIndex() );
+        }
+    }
 
     public Layer( String layerID, int zIndex )
     {
         this.layerID = layerID;
-        this.components = new ArrayList< Component >();
+        this.components = new ArrayList< GameEntity >();
     }
 
     public String getLayerID()
@@ -22,14 +34,22 @@ public class Layer implements Comparable< Layer >
         return layerID;
     }
 
-    public void addComponent( Component component )
+    public void addEntity( GameEntity component )
     {
-        components.add( component );
+        if ( !components.contains( component ) )
+        {
+            components.add( component );
+        }
     }
 
-    public List< Component > getComponents()
+    public List< GameEntity > getEntities()
     {
         return components;
+    }
+
+    public void sortLayers()
+    {
+        Collections.sort( getEntities(), zIndexComparator );
     }
 
     @Override

@@ -3,12 +3,12 @@ package eamo.engine.managers;
 import java.util.TreeSet;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import eamo.engine.component.Component;
+import eamo.engine.component.GameEntity;
 import eamo.engine.rendering.Layer;
-import eamo.engine.sandbox.GameCharacter;
 import eamo.engine.stage.Stage;
 
 /**
@@ -40,17 +40,20 @@ public class RenderingManager extends Manager
      * 
      * @param delta the time delta since the last render operation.
      */
-    public void render( float delta )
+    public void render( Camera camera, float delta )
     {
-        Gdx.gl.glClearColor( 0.4f, 0.6f, 1.0f, 1.0f );
+        spriteBatch.setProjectionMatrix( camera.combined );
+        Gdx.gl.glClearColor( 1f, 1f, 1.0f, 1.0f );
         Gdx.gl.glClear( GL10.GL_COLOR_BUFFER_BIT );
 
         for ( Layer layer : layers )
         {
+            layer.sortLayers();
             spriteBatch.begin();
-            getStage().getComponentManager().dispatchMessage( new GameCharacter.RenderMessage( spriteBatch, delta ) );
-            // TODO callback feature
-            layer.getLayerID(); // TODO pointless code
+            for ( GameEntity entity : layer.getEntities() )
+            {
+                entity.render( spriteBatch, delta );
+            }
             spriteBatch.end();
         }
     }
@@ -60,9 +63,9 @@ public class RenderingManager extends Manager
      * Ideally a single component should only be associated with a single layer.
      * 
      * @param layerID the ID of the layer to add the component to.
-     * @param component the component to add to the supplied layer.
+     * @param entity the component to add to the supplied layer.
      */
-    public void addToLayer( String layerID, Component component )
+    public void addToLayer( String layerID, GameEntity entity )
     {
         Layer layer = getLayer( layerID );
 
@@ -72,11 +75,12 @@ public class RenderingManager extends Manager
             layers.add( layer );
         }
 
-        layer.addComponent( component );
+        layer.addEntity( entity );
     }
 
     /**
      * Get the layer referenced by the supplied layer ID.
+     * 
      * @param layerID the id of the layer to retrieve.
      * @return the requested layer, or null if requested layer does not exist.
      */
@@ -98,4 +102,5 @@ public class RenderingManager extends Manager
     {
         spriteBatch.dispose();
     }
+
 }
